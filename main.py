@@ -4,7 +4,7 @@ from ota_update import OTAUpdater
 import secrets
 
 def download_and_install_update_if_available():
-	updater = OTAUpdater('https://github.com/bachi76/micropython-ota-test.git')
+	updater = OTAUpdater('https://github.com/bachi76/micropython-ota-test')
 	updater.download_and_install_update_if_available(secrets.wifi_ssid, secrets.wifi_password)
 
 def start():
@@ -18,5 +18,6 @@ def boot():
 
 print("Booting in 5sec...")
 time.sleep(5)
+print("Booting now.")
 
 boot()

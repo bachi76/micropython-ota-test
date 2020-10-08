@@ -50,6 +50,8 @@ class OTAUpdater:
                 self._download_and_install_update(latest_version, ssid, password)
         else:
             print('No new updates found...')
+            OTAUpdater.using_network(ssid, password)
+            self.check_for_update_to_install_during_next_reboot()
 
     def _download_and_install_update(self, latest_version, ssid, password):
         OTAUpdater.using_network(ssid, password)
@@ -112,7 +114,10 @@ class OTAUpdater:
         return '0.0'
 
     def get_latest_version(self):
-        latest_release = self.http_client.get(self.github_repo + '/releases/latest')
+        url = self.github_repo + '/releases/latest'
+        print("Fetching {} ...".format(url))
+        latest_release = self.http_client.get(url)
+        print(latest_release.json())
         version = latest_release.json()['tag_name']
         latest_release.close()
         return version
@@ -198,7 +203,8 @@ class HttpClient:
             host, port = host.split(':', 1)
             port = int(port)
 
-        ai = usocket.getaddrinfo(host, port, 0, usocket.SOCK_STREAM)
+        #ai = usocket.getaddrinfo(host, port, 0, usocket.SOCK_STREAM)
+        ai = usocket.getaddrinfo(host, port)
         ai = ai[0]
 
         s = usocket.socket(ai[0], ai[1], ai[2])
