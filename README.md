@@ -33,3 +33,9 @@ Get boot loader output:
 ## OTA: 
 
 https://github.com/rdehuyss/micropython-ota-updater
+
+To send a new OTA update to the ESPs:
+
+1. Create and push a git tag, e.g. `git tag -a v1.1.0 -m "1.1.0"` (`git config push.followTags true` can be useful)
+2. Publish a new release on GitHub, e.g. https://github.com/bachi76/micropython-ota-test/releases/
+3. On the next device boot, the new files in main/ are downloaded and after another reboot installed.

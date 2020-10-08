@@ -16,8 +16,6 @@ def boot():
 	download_and_install_update_if_available()
 	start()
 
-print("Booting in 5sec...")
-time.sleep(5)
 print("Booting now.")
 
 boot()
