@@ -1,10 +1,11 @@
 import time
 import machine
 
-led = machine.Pin(2, machine.Pin.OUT)
+def run():
+	led = machine.Pin(2, machine.Pin.OUT)
 
-while True:
-	print("Hello big big world")
-	time.sleep(2)
-	led.value(not led.value())
+	while True:
+		print("Hello big big world")
+		time.sleep(2)
+		led.value(not led.value())
 
